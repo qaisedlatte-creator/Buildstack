@@ -1,0 +1,815 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BuildStack -- Websites & AI Automation for Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+–bg: #0a0a08;
+–surface: #111110;
+–border: #222220;
+–accent: #d4f04a;
+–accent2: #f0a84a;
+–text: #f0ede6;
+–muted: #888880;
+–card: #161614;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: 'Syne', sans-serif;
+overflow-x: hidden;
+cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+width: 10px; height: 10px;
+background: var(–accent);
+border-radius: 50%;
+position: fixed;
+top: 0; left: 0;
+pointer-events: none;
+z-index: 9999;
+transform: translate(-50%, -50%);
+transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+mix-blend-mode: difference;
+}
+.cursor.big { width: 40px; height: 40px; }
+
+/* Noise overlay */
+body::before {
+content: '';
+position: fixed;
+inset: 0;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+pointer-events: none;
+z-index: 1;
+opacity: 0.4;
+}
+
+/* NAV */
+nav {
+position: fixed; top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.5rem 3rem;
+border-bottom: 1px solid var(–border);
+background: rgba(10,10,8,0.85);
+backdrop-filter: blur(12px);
+animation: fadeDown 0.6s ease both;
+}
+
+.logo {
+font-family: 'Syne', sans-serif;
+font-weight: 800;
+font-size: 1.25rem;
+letter-spacing: -0.02em;
+}
+.logo span { color: var(–accent); }
+
+.nav-pill {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.5rem 1.25rem;
+border: 1px solid var(–border);
+border-radius: 100px;
+font-size: 0.8rem;
+font-family: 'DM Mono', monospace;
+color: var(–muted);
+letter-spacing: 0.05em;
+text-transform: uppercase;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(–accent); animation: pulse 2s infinite; }
+
+/* HERO */
+.hero {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 10rem 3rem 6rem;
+position: relative;
+overflow: hidden;
+}
+
+.hero-grid {
+position: absolute;
+inset: 0;
+background-image:
+linear-gradient(var(–border) 1px, transparent 1px),
+linear-gradient(90deg, var(–border) 1px, transparent 1px);
+background-size: 80px 80px;
+opacity: 0.4;
+mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+}
+
+.hero-glow {
+position: absolute;
+width: 700px; height: 700px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(212,240,74,0.08) 0%, transparent 70%);
+top: 50%; left: 50%;
+transform: translate(-50%, -50%);
+pointer-events: none;
+}
+
+.hero-tag {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.4rem 1rem;
+background: rgba(212,240,74,0.08);
+border: 1px solid rgba(212,240,74,0.2);
+border-radius: 100px;
+font-family: 'DM Mono', monospace;
+font-size: 0.75rem;
+color: var(–accent);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+margin-bottom: 2rem;
+width: fit-content;
+animation: fadeUp 0.8s 0.2s ease both;
+}
+
+h1 {
+font-family: 'Instrument Serif', serif;
+font-size: clamp(3.5rem, 8vw, 7.5rem);
+line-height: 1.0;
+letter-spacing: -0.02em;
+max-width: 900px;
+animation: fadeUp 0.8s 0.3s ease both;
+}
+
+h1 em {
+font-style: italic;
+color: var(–accent);
+}
+
+.hero-sub {
+font-size: 1.1rem;
+color: var(–muted);
+max-width: 520px;
+line-height: 1.7;
+margin-top: 1.5rem;
+font-weight: 400;
+animation: fadeUp 0.8s 0.4s ease both;
+}
+
+/* WAITLIST FORM */
+.waitlist-wrap {
+margin-top: 3rem;
+animation: fadeUp 0.8s 0.5s ease both;
+}
+
+.waitlist-form {
+display: flex;
+gap: 0.75rem;
+max-width: 480px;
+flex-wrap: wrap;
+}
+
+.waitlist-form input {
+flex: 1;
+min-width: 220px;
+padding: 0.9rem 1.25rem;
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 8px;
+color: var(–text);
+font-family: 'Syne', sans-serif;
+font-size: 0.95rem;
+outline: none;
+transition: border-color 0.2s;
+}
+.waitlist-form input:focus { border-color: var(–accent); }
+.waitlist-form input::placeholder { color: var(–muted); }
+
+.btn-primary {
+padding: 0.9rem 1.75rem;
+background: var(–accent);
+color: #0a0a08;
+border: none;
+border-radius: 8px;
+font-family: 'Syne', sans-serif;
+font-size: 0.95rem;
+font-weight: 700;
+cursor: none;
+transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+white-space: nowrap;
+}
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 30px rgba(212,240,74,0.3);
+background: #e0ff55;
+}
+.btn-primary:active { transform: translateY(0); }
+
+.waitlist-count {
+margin-top: 1rem;
+font-family: 'DM Mono', monospace;
+font-size: 0.78rem;
+color: var(–muted);
+letter-spacing: 0.04em;
+}
+.waitlist-count strong { color: var(–accent); }
+
+.success-msg {
+display: none;
+margin-top: 1rem;
+padding: 0.75rem 1.25rem;
+background: rgba(212,240,74,0.1);
+border: 1px solid rgba(212,240,74,0.3);
+border-radius: 8px;
+font-size: 0.9rem;
+color: var(–accent);
+font-family: 'DM Mono', monospace;
+}
+
+/* MARQUEE */
+.marquee-wrap {
+border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border);
+overflow: hidden;
+padding: 1rem 0;
+background: var(–surface);
+}
+.marquee-track {
+display: flex;
+gap: 3rem;
+width: max-content;
+animation: marquee 18s linear infinite;
+font-family: 'DM Mono', monospace;
+font-size: 0.8rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–muted);
+}
+.marquee-track span { white-space: nowrap; }
+.marquee-track .sep { color: var(–accent); }
+
+/* SERVICES */
+.section { padding: 7rem 3rem; }
+.section-label {
+font-family: 'DM Mono', monospace;
+font-size: 0.75rem;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: var(–accent);
+margin-bottom: 1rem;
+}
+.section-title {
+font-family: 'Instrument Serif', serif;
+font-size: clamp(2rem, 4vw, 3.5rem);
+letter-spacing: -0.02em;
+line-height: 1.1;
+max-width: 600px;
+}
+
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.5px;
+margin-top: 4rem;
+border: 1.5px solid var(–border);
+border-radius: 16px;
+overflow: hidden;
+}
+
+.service-card {
+background: var(–card);
+padding: 2.5rem;
+transition: background 0.2s;
+position: relative;
+overflow: hidden;
+}
+.service-card::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(212,240,74,0.04), transparent);
+opacity: 0;
+transition: opacity 0.3s;
+}
+.service-card:hover { background: #1a1a17; }
+.service-card:hover::before { opacity: 1; }
+
+.service-icon {
+width: 44px; height: 44px;
+background: rgba(212,240,74,0.08);
+border: 1px solid rgba(212,240,74,0.15);
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+font-size: 1.1rem;
+font-weight: 700;
+margin-bottom: 0.75rem;
+letter-spacing: -0.01em;
+}
+.service-card p {
+font-size: 0.88rem;
+color: var(–muted);
+line-height: 1.7;
+font-weight: 400;
+}
+
+.service-tag {
+display: inline-block;
+margin-top: 1.25rem;
+padding: 0.25rem 0.75rem;
+background: rgba(212,240,74,0.06);
+border: 1px solid rgba(212,240,74,0.15);
+border-radius: 100px;
+font-family: 'DM Mono', monospace;
+font-size: 0.7rem;
+color: var(–accent);
+letter-spacing: 0.06em;
+text-transform: uppercase;
+}
+
+/* HOW IT WORKS */
+.how-section {
+padding: 7rem 3rem;
+background: var(–surface);
+border-top: 1px solid var(–border);
+border-bottom: 1px solid var(–border);
+}
+
+.steps {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 2rem;
+margin-top: 4rem;
+counter-reset: step;
+}
+
+.step {
+counter-increment: step;
+position: relative;
+}
+.step::before {
+content: counter(step, decimal-leading-zero);
+display: block;
+font-family: 'DM Mono', monospace;
+font-size: 0.75rem;
+color: var(–accent);
+letter-spacing: 0.1em;
+margin-bottom: 1rem;
+}
+.step h4 { font-size: 1.05rem; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+.step p { font-size: 0.85rem; color: var(–muted); line-height: 1.7; font-weight: 400; }
+
+/* SOCIAL PROOF */
+.proof-section { padding: 7rem 3rem; }
+.proof-cards {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.5rem;
+margin-top: 4rem;
+}
+.proof-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 2rem;
+transition: border-color 0.2s, transform 0.2s;
+}
+.proof-card:hover { border-color: rgba(212,240,74,0.3); transform: translateY(-3px); }
+
+.stars { color: var(–accent); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 2px; }
+.proof-card blockquote {
+font-family: 'Instrument Serif', serif;
+font-size: 1.05rem;
+line-height: 1.6;
+color: var(–text);
+margin-bottom: 1.25rem;
+font-style: italic;
+}
+.proof-author {
+display: flex;
+align-items: center;
+gap: 0.75rem;
+}
+.avatar {
+width: 36px; height: 36px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.85rem;
+font-weight: 700;
+background: rgba(212,240,74,0.12);
+color: var(–accent);
+flex-shrink: 0;
+}
+.author-info .name { font-size: 0.88rem; font-weight: 700; }
+.author-info .role { font-size: 0.78rem; color: var(–muted); font-family: 'DM Mono', monospace; }
+
+/* CTA BOTTOM */
+.cta-section {
+padding: 8rem 3rem;
+text-align: center;
+background: var(–surface);
+border-top: 1px solid var(–border);
+position: relative;
+overflow: hidden;
+}
+.cta-section::before {
+content: '';
+position: absolute;
+width: 600px; height: 600px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(212,240,74,0.06) 0%, transparent 70%);
+top: 50%; left: 50%;
+transform: translate(-50%, -50%);
+}
+.cta-section h2 {
+font-family: 'Instrument Serif', serif;
+font-size: clamp(2.5rem, 5vw, 5rem);
+letter-spacing: -0.02em;
+line-height: 1.05;
+margin-bottom: 1.5rem;
+position: relative;
+}
+.cta-section p {
+color: var(–muted);
+font-size: 1.05rem;
+margin-bottom: 2.5rem;
+position: relative;
+}
+.cta-form {
+display: flex;
+gap: 0.75rem;
+max-width: 420px;
+margin: 0 auto;
+flex-wrap: wrap;
+justify-content: center;
+position: relative;
+}
+.cta-form input {
+flex: 1;
+min-width: 200px;
+padding: 0.9rem 1.25rem;
+background: var(–bg);
+border: 1px solid var(–border);
+border-radius: 8px;
+color: var(–text);
+font-family: 'Syne', sans-serif;
+font-size: 0.95rem;
+outline: none;
+transition: border-color 0.2s;
+}
+.cta-form input:focus { border-color: var(–accent); }
+.cta-form input::placeholder { color: var(–muted); }
+
+/* FOOTER */
+footer {
+padding: 2.5rem 3rem;
+border-top: 1px solid var(–border);
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: gap;
+gap: 1rem;
+}
+footer .logo { font-size: 1rem; }
+.footer-links {
+display: flex;
+gap: 2rem;
+}
+.footer-links a {
+font-family: 'DM Mono', monospace;
+font-size: 0.75rem;
+color: var(–muted);
+text-decoration: none;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+transition: color 0.2s;
+}
+.footer-links a:hover { color: var(–accent); }
+.footer-copy {
+font-family: 'DM Mono', monospace;
+font-size: 0.72rem;
+color: var(–muted);
+letter-spacing: 0.04em;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(24px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+from { opacity: 0; transform: translateY(-16px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+0%, 100% { opacity: 1; }
+50% { opacity: 0.3; }
+}
+@keyframes marquee {
+from { transform: translateX(0); }
+to { transform: translateX(-50%); }
+}
+
+/* Scroll reveal */
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+nav { padding: 1.25rem 1.5rem; }
+.hero, .section, .how-section, .proof-section, .cta-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+footer { flex-direction: column; padding: 2rem 1.5rem; }
+.footer-links { flex-wrap: wrap; gap: 1rem; }
+}
+</style>
+
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+
+<nav>
+  <div class="logo">Build<span>Stack</span></div>
+  <div class="nav-pill"><span class="dot"></span> Now accepting waitlist</div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-tag">✦ Website & AI Automation Studio</div>
+
+  <h1>Your business,<br /><em>built smarter.</em></h1>
+
+  <p class="hero-sub">
+    We build conversion-ready websites and plug in AI automations that save you hours every week -- so you can focus on running your business.
+  </p>
+
+  <div class="waitlist-wrap">
+    <div class="waitlist-form">
+      <input type="email" id="hero-email" placeholder="Enter your email" autocomplete="off" />
+      <button class="btn-primary" onclick="joinWaitlist('hero-email', 'hero-success', 'hero-count')">Join Waitlist →</button>
+    </div>
+    <div class="success-msg" id="hero-success">🎉 You're on the list! We'll be in touch soon.</div>
+    <p class="waitlist-count" id="hero-count"><strong id="hcount">47</strong> people already on the waitlist</p>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Website Design</span><span class="sep">✦</span>
+    <span>AI Chatbots</span><span class="sep">✦</span>
+    <span>Lead Automation</span><span class="sep">✦</span>
+    <span>CRM Integration</span><span class="sep">✦</span>
+    <span>Landing Pages</span><span class="sep">✦</span>
+    <span>Email Sequences</span><span class="sep">✦</span>
+    <span>AI Workflows</span><span class="sep">✦</span>
+    <span>Booking Systems</span><span class="sep">✦</span>
+    <span>Website Design</span><span class="sep">✦</span>
+    <span>AI Chatbots</span><span class="sep">✦</span>
+    <span>Lead Automation</span><span class="sep">✦</span>
+    <span>CRM Integration</span><span class="sep">✦</span>
+    <span>Landing Pages</span><span class="sep">✦</span>
+    <span>Email Sequences</span><span class="sep">✦</span>
+    <span>AI Workflows</span><span class="sep">✦</span>
+    <span>Booking Systems</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+
+<section class="section" id="services">
+  <div class="section-label reveal">What we build</div>
+  <h2 class="section-title reveal">Everything your business needs to grow online</h2>
+
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <h3>Website Design & Dev</h3>
+      <p>Fast, modern, mobile-first websites that actually convert visitors into customers. No templates -- built for your brand.</p>
+      <span class="service-tag">From scratch</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤖</div>
+      <h3>AI Chat & Support</h3>
+      <p>Custom AI assistants trained on your business that handle enquiries, qualify leads, and book appointments 24/7.</p>
+      <span class="service-tag">Always on</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Workflow Automation</h3>
+      <p>We map and automate your repetitive tasks -- follow-ups, data entry, reporting -- so your team focuses on what matters.</p>
+      <span class="service-tag">Save hours/week</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📬</div>
+      <h3>Lead & Email Systems</h3>
+      <p>Automated lead capture, nurture sequences, and CRM integration that keeps prospects warm without lifting a finger.</p>
+      <span class="service-tag">Hands-free</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📅</div>
+      <h3>Booking & Onboarding</h3>
+      <p>Smart booking flows and automated client onboarding that make a great first impression and reduce admin time.</p>
+      <span class="service-tag">Client-ready</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Analytics & Reporting</h3>
+      <p>Dashboards that show what's working so you make decisions with data, not gut feeling.</p>
+      <span class="service-tag">Crystal clear</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+
+<section class="how-section" id="how">
+  <div class="section-label reveal">The process</div>
+  <h2 class="section-title reveal">Simple, fast, and no tech headaches</h2>
+
+  <div class="steps">
+    <div class="step reveal">
+      <h4>Discovery Call</h4>
+      <p>We learn about your business, your goals, and your current bottlenecks in a quick 30-minute call.</p>
+    </div>
+    <div class="step reveal">
+      <h4>Custom Proposal</h4>
+      <p>You get a clear scope, timeline, and price -- no ambiguous pricing or hidden extras.</p>
+    </div>
+    <div class="step reveal">
+      <h4>We Build</h4>
+      <p>Our team gets to work. You'll see progress updates and get to give feedback throughout.</p>
+    </div>
+    <div class="step reveal">
+      <h4>Launch & Hand Off</h4>
+      <p>We launch, train you on everything, and stay available for support. You're never left guessing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+
+<section class="proof-section" id="reviews">
+  <div class="section-label reveal">Early clients</div>
+  <h2 class="section-title reveal">Businesses already seeing results</h2>
+
+  <div class="proof-cards">
+    <div class="proof-card reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"The AI chatbot they built handles about 70% of our customer questions. It paid for itself in the first month."</blockquote>
+      <div class="proof-author">
+        <div class="avatar">JM</div>
+        <div class="author-info">
+          <div class="name">Jordan M.</div>
+          <div class="role">Owner, Local Trades Co.</div>
+        </div>
+      </div>
+    </div>
+    <div class="proof-card reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Finally a website that actually looks like us. And the lead form automation means we never miss a potential client."</blockquote>
+      <div class="proof-author">
+        <div class="avatar">SR</div>
+        <div class="author-info">
+          <div class="name">Sarah R.</div>
+          <div class="role">Founder, Bloom Skin Studio</div>
+        </div>
+      </div>
+    </div>
+    <div class="proof-card reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>"They automated our entire onboarding process. What used to take 2 hours now takes 10 minutes. Genuinely shocked."</blockquote>
+      <div class="proof-author">
+        <div class="avatar">DK</div>
+        <div class="author-info">
+          <div class="name">Dev K.</div>
+          <div class="role">CEO, Nexus Consulting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+
+<section class="cta-section" id="waitlist">
+  <h2>Ready to build<br /><em style="color:var(--accent);font-style:italic;">something great?</em></h2>
+  <p>Join the waitlist and get early access + a free strategy call.</p>
+  <div class="cta-form">
+    <input type="email" id="cta-email" placeholder="your@email.com" />
+    <button class="btn-primary" onclick="joinWaitlist('cta-email', 'cta-success', 'cta-count')">Get Early Access →</button>
+  </div>
+  <div class="success-msg" id="cta-success" style="max-width:420px;margin:1rem auto 0;">🎉 You're in! Check your inbox soon.</div>
+  <p class="waitlist-count" style="margin-top:1rem;" id="cta-count"><strong id="ccount">47</strong> businesses already on the list</p>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="logo">Build<span>Stack</span></div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#how">How it works</a>
+    <a href="#waitlist">Join waitlist</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+  </div>
+  <div class="footer-copy">© 2025 BuildStack. All rights reserved.</div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('button, a, input').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+
+  // Waitlist logic
+  let count = parseInt(localStorage.getItem('bs_count') || '47');
+
+  function updateCounts() {
+    document.getElementById('hcount').textContent = count;
+    document.getElementById('ccount').textContent = count;
+  }
+
+  function joinWaitlist(inputId, successId, countId) {
+    const input = document.getElementById(inputId);
+    const email = input.value.trim();
+    const success = document.getElementById(successId);
+
+    if (!email || !email.includes('@')) {
+      input.style.borderColor = '#ff6b6b';
+      setTimeout(() => input.style.borderColor = '', 1500);
+      return;
+    }
+
+    // Save to localStorage
+    const emails = JSON.parse(localStorage.getItem('bs_waitlist') || '[]');
+    if (!emails.includes(email)) {
+      emails.push(email);
+      localStorage.setItem('bs_waitlist', JSON.stringify(emails));
+      count++;
+      localStorage.setItem('bs_count', count);
+      updateCounts();
+    }
+
+    input.style.display = 'none';
+    input.closest('.waitlist-form, .cta-form').querySelector('button').style.display = 'none';
+    success.style.display = 'block';
+    document.getElementById(countId).style.display = 'none';
+  }
+
+  updateCounts();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
