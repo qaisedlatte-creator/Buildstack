@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playmakers Soccer Field – Kaloor, Kochi</title>
+  <meta name="description" content="Book your football turf slot at Playmakers Soccer Field, Kaloor, Kochi. Premium 5-a-side football & box cricket turf open 5AM–12AM daily." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a class="nav-logo" href="#">
+        <span class="logo-icon">⚽</span>
+        <span>Playmakers</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#booking">Book Now</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="book-btn nav-cta" onclick="scrollToBooking()">Book a Slot</button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=1600&auto=format&fit=crop&q=80" alt="Football turf aerial view" class="hero-img" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">⚽ Kochi's Premier Football Turf</div>
+      <h1>Play Like <span class="accent">Champions</span></h1>
+      <p class="hero-sub">Premium FIFA-grade turf in the heart of Kaloor, Kochi. Open every day from 5 AM to 12 AM.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">4.8★</span><span class="stat-label">Rating</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">5AM–12AM</span><span class="stat-label">Daily Hours</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">2 Sports</span><span class="stat-label">Football & Cricket</span></div>
+      </div>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="scrollToBooking()">Book a Slot Now</button>
+        <a href="tel:+919446089121" class="btn-secondary">📞 Call Us</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images">
+          <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&auto=format&fit=crop&q=80" alt="Players on turf" class="about-img-main" />
+          <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&auto=format&fit=crop&q=80" alt="Football night game" class="about-img-accent" />
+          <div class="about-badge">
+            <span class="about-badge-num">4.8</span>
+            <span class="about-badge-txt">⭐ Rated on Playo</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <span class="section-tag">About Us</span>
+          <h2>Kaloor's Favourite <span class="accent">Football Venue</span></h2>
+          <p>Playmakers Soccer Field is the go-to destination for football lovers in Kochi. Located conveniently near Kaloor International Stadium, our state-of-the-art facility offers a premium experience for players of all skill levels.</p>
+          <p>Whether you're organising a weekend league, a corporate match, or a casual kick-about with friends, Playmakers provides the perfect pitch, the best facilities, and an atmosphere that fuels your passion for the game.</p>
+          <ul class="about-features">
+            <li><span class="check">✓</span> FIFA-grade synthetic turf surface</li>
+            <li><span class="check">✓</span> Floodlit for evening &amp; night matches</li>
+            <li><span class="check">✓</span> 5-a-side football &amp; box cricket</li>
+            <li><span class="check">✓</span> Professional changing rooms &amp; showers</li>
+            <li><span class="check">✓</span> Ample secure parking</li>
+            <li><span class="check">✓</span> On-site gear store</li>
+          </ul>
+          <a href="https://maps.app.goo.gl/7djryYZSCN9c2Dg49" target="_blank" class="btn-outline">📍 Get Directions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FACILITIES ===== -->
+  <section class="facilities section" id="facilities">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What We Offer</span>
+        <h2>World-Class <span class="accent">Facilities</span></h2>
+        <p>Everything you need for the perfect game, all under one roof.</p>
+      </div>
+      <div class="facilities-grid">
+        <div class="facility-card">
+          <div class="facility-icon">🏟️</div>
+          <h3>Premium Turf</h3>
+          <p>FIFA-approved synthetic grass that feels and plays like the real thing, all year round regardless of weather.</p>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">💡</div>
+          <h3>Floodlights</h3>
+          <p>High-intensity LED floodlights ensure crystal-clear visibility for late-night matches and training sessions.</p>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">🚿</div>
+          <h3>Showers &amp; Changing Rooms</h3>
+          <p>Clean, spacious changing rooms and showers so you can freshen up right after your game.</p>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">🅿️</div>
+          <h3>Parking</h3>
+          <p>Secure and ample parking space for all players and spectators, free of charge.</p>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">🏏</div>
+          <h3>Box Cricket</h3>
+          <p>Dedicated box cricket setup — enjoy cricket alongside football at the same venue.</p>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">🛍️</div>
+          <h3>Gear Store</h3>
+          <p>On-site store stocking boots, jerseys, shin guards, gloves and everything else you need to play.</p>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">💧</div>
+          <h3>Drinking Water</h3>
+          <p>Fresh, chilled drinking water available throughout the premises to keep you hydrated.</p>
+        </div>
+        <div class="facility-card">
+          <div class="facility-icon">🛋️</div>
+          <h3>Players Lounge</h3>
+          <p>A comfortable lounge area to relax before or after your match and cheer on your teammates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Gallery</span>
+        <h2>See the <span class="accent">Action</span></h2>
+        <p>A glimpse of what awaits you at Playmakers Soccer Field.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item large">
+          <img src="https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=800&auto=format&fit=crop&q=80" alt="Football match on turf" />
+          <div class="gallery-overlay"><span>Match Day</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&auto=format&fit=crop&q=80" alt="Football at night" />
+          <div class="gallery-overlay"><span>Night Games</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&auto=format&fit=crop&q=80" alt="Football players" />
+          <div class="gallery-overlay"><span>Team Play</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1516132006923-6cf348e5dee2?w=600&auto=format&fit=crop&q=80" alt="Turf surface" />
+          <div class="gallery-overlay"><span>Premium Surface</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&auto=format&fit=crop&q=80" alt="Evening football" />
+          <div class="gallery-overlay"><span>Evening Sessions</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=600&auto=format&fit=crop&q=80" alt="Football goal" />
+          <div class="gallery-overlay"><span>Goal!</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Pricing</span>
+        <h2>Simple, Transparent <span class="accent">Pricing</span></h2>
+        <p>Pay for exactly what you need. No hidden fees.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <span class="pricing-badge">Most Popular</span>
+            <h3>5-a-Side Football</h3>
+            <div class="pricing-sport-icon">⚽</div>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Per hour slot booking</li>
+            <li>✓ Full team (up to 10 players)</li>
+            <li>✓ Floodlit pitch included</li>
+            <li>✓ Referee available on request</li>
+            <li>✓ Bibs provided</li>
+          </ul>
+          <p class="pricing-note">Contact us for current rates — we offer group & corporate discounts.</p>
+          <button class="btn-primary" onclick="scrollToBooking()">Book Now</button>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-header">
+            <span class="pricing-badge gold">Best Value</span>
+            <h3>Box Cricket</h3>
+            <div class="pricing-sport-icon">🏏</div>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Per hour slot booking</li>
+            <li>✓ Full team (up to 12 players)</li>
+            <li>✓ Equipment provided</li>
+            <li>✓ Umpire on request</li>
+            <li>✓ Evening &amp; night slots available</li>
+          </ul>
+          <p class="pricing-note">Contact us for current rates — we offer group & corporate discounts.</p>
+          <button class="btn-primary" onclick="scrollToBooking()">Book Now</button>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Corporate / Events</h3>
+            <div class="pricing-sport-icon">🏆</div>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Half-day &amp; full-day packages</li>
+            <li>✓ Tournament organisation support</li>
+            <li>✓ Dedicated event coordinator</li>
+            <li>✓ Customised branding options</li>
+            <li>✓ Refreshments arrangement</li>
+          </ul>
+          <p class="pricing-note">Custom quotes available. Call us or fill the booking form below.</p>
+          <a href="tel:+919446089121" class="btn-outline">📞 Get a Quote</a>
+        </div>
+      </div>
+      <p class="pricing-disclaimer">For the latest rates and offers, call us at <a href="tel:+919446089121">+91 94460 89121</a> or check our listing on <a href="https://playo.co/venues/kaloor-cochin/playmakers-kaloor-cochin" target="_blank">Playo</a>.</p>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING ===== -->
+  <section class="booking section" id="booking">
+    <div class="container">
+      <div class="booking-wrapper">
+        <div class="booking-info">
+          <span class="section-tag light">Book a Slot</span>
+          <h2>Reserve Your <span class="accent">Pitch Today</span></h2>
+          <p>Fill in the form and we'll confirm your booking within minutes. Alternatively, call us directly.</p>
+          <div class="booking-contact-card">
+            <a href="tel:+919446089121" class="contact-row">
+              <span class="contact-icon">📞</span>
+              <span>+91 94460 89121</span>
+            </a>
+            <div class="contact-row">
+              <span class="contact-icon">🕐</span>
+              <span>5:00 AM – 12:00 AM, 7 days a week</span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-icon">📍</span>
+              <span>YMJRA-24A, Kaloor, Kochi, Kerala 682017</span>
+            </div>
+          </div>
+          <div class="quick-book-links">
+            <p>Also book instantly on:</p>
+            <a href="https://playo.co/venues/kaloor-cochin/playmakers-kaloor-cochin" target="_blank" class="platform-btn">Playo</a>
+            <a href="https://www.playspots.in/booking-spot/playmakers-ymjra-24a-kaloor/" target="_blank" class="platform-btn">Playspots</a>
+          </div>
+        </div>
+
+        <form class="booking-form" id="booking-form" onsubmit="handleBooking(event)">
+          <h3>Send a Booking Request</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name *</label>
+              <input type="text" id="name" name="name" placeholder="e.g. Arjun Menon" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sport">Sport *</label>
+              <select id="sport" name="sport" required>
+                <option value="">Select a sport</option>
+                <option value="football">5-a-Side Football</option>
+                <option value="cricket">Box Cricket</option>
+                <option value="corporate">Corporate / Event</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="players">No. of Players *</label>
+              <select id="players" name="players" required>
+                <option value="">Select</option>
+                <option value="5-6">5–6 players</option>
+                <option value="7-8">7–8 players</option>
+                <option value="9-10">9–10 players</option>
+                <option value="11+">11+ players</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Preferred Date *</label>
+              <input type="date" id="date" name="date" required />
+            </div>
+            <div class="form-group">
+              <label for="time">Preferred Time *</label>
+              <select id="time" name="time" required>
+                <option value="">Select a slot</option>
+                <option value="05:00">5:00 AM – 6:00 AM</option>
+                <option value="06:00">6:00 AM – 7:00 AM</option>
+                <option value="07:00">7:00 AM – 8:00 AM</option>
+                <option value="08:00">8:00 AM – 9:00 AM</option>
+                <option value="09:00">9:00 AM – 10:00 AM</option>
+                <option value="10:00">10:00 AM – 11:00 AM</option>
+                <option value="11:00">11:00 AM – 12:00 PM</option>
+                <option value="12:00">12:00 PM – 1:00 PM</option>
+                <option value="13:00">1:00 PM – 2:00 PM</option>
+                <option value="14:00">2:00 PM – 3:00 PM</option>
+                <option value="15:00">3:00 PM – 4:00 PM</option>
+                <option value="16:00">4:00 PM – 5:00 PM</option>
+                <option value="17:00">5:00 PM – 6:00 PM</option>
+                <option value="18:00">6:00 PM – 7:00 PM</option>
+                <option value="19:00">7:00 PM – 8:00 PM</option>
+                <option value="20:00">8:00 PM – 9:00 PM</option>
+                <option value="21:00">9:00 PM – 10:00 PM</option>
+                <option value="22:00">10:00 PM – 11:00 PM</option>
+                <option value="23:00">11:00 PM – 12:00 AM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Additional Notes</label>
+            <textarea id="message" name="message" rows="3" placeholder="Any special requests, equipment needs, etc."></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-width" id="submit-btn">
+            Submit Booking Request
+          </button>
+          <p class="form-disclaimer">We'll call you within 30 minutes to confirm your slot.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-icon">🎉</div>
+      <h3>Booking Request Sent!</h3>
+      <p>Thanks! We'll call you within 30 minutes to confirm your slot at Playmakers Soccer Field.</p>
+      <p class="modal-contact">Questions? Call us now: <a href="tel:+919446089121">+91 94460 89121</a></p>
+      <button class="btn-primary" onclick="closeModal()">Done</button>
+    </div>
+  </div>
+
+  <!-- ===== MAP ===== -->
+  <section class="map-section">
+    <div class="map-header">
+      <h2>Find Us Easily</h2>
+      <p>YMJRA-24A, Kaloor, Kochi, Kerala 682017 — near Kaloor International Stadium</p>
+    </div>
+    <div class="map-container">
+      <iframe
+        title="Playmakers Soccer Field Location"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.0!2d76.2998!3d10.0025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080dccf3272ad9%3A0xf0c528e79296119b!2sPlaymakers%20Soccer%20Field!5e0!3m2!1sen!2sin!4v1710000000000"
+        width="100%"
+        height="400"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What Players Say</span>
+        <h2>Loved by <span class="accent">Kochi's Football Community</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Best turf in Kochi hands down. The surface is excellent and the floodlights make evening games feel like a proper match. Highly recommend!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AK</div>
+            <div>
+              <strong>Arun K.</strong>
+              <span>Regular Player</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"We've been playing corporate tournaments here for 2 years. The staff is super helpful, facilities are top-notch, and parking is a breeze."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SM</div>
+            <div>
+              <strong>Sneha M.</strong>
+              <span>Corporate Events</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"5AM slots are a lifesaver for morning training. The turf is perfectly maintained and the changing rooms are clean. Playmakers is the real deal!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RJ</div>
+            <div>
+              <strong>Rohan J.</strong>
+              <span>Football Coach</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get in Touch</span>
+        <h2>We're Here to <span class="accent">Help</span></h2>
+      </div>
+      <div class="contact-cards">
+        <a href="tel:+919446089121" class="contact-card">
+          <div class="contact-card-icon">📞</div>
+          <h3>Call Us</h3>
+          <p>+91 94460 89121</p>
+          <span class="contact-card-hint">Tap to call now</span>
+        </a>
+        <a href="https://maps.app.goo.gl/7djryYZSCN9c2Dg49" target="_blank" class="contact-card">
+          <div class="contact-card-icon">📍</div>
+          <h3>Visit Us</h3>
+          <p>YMJRA-24A, Kaloor<br />Kochi, Kerala 682017</p>
+          <span class="contact-card-hint">Get directions</span>
+        </a>
+        <div class="contact-card">
+          <div class="contact-card-icon">🕐</div>
+          <h3>Opening Hours</h3>
+          <p>5:00 AM – 12:00 AM</p>
+          <span class="contact-card-hint">7 days a week</span>
+        </div>
+        <a href="https://playo.co/venues/kaloor-cochin/playmakers-kaloor-cochin" target="_blank" class="contact-card">
+          <div class="contact-card-icon">📱</div>
+          <h3>Book Online</h3>
+          <p>via Playo or Playspots</p>
+          <span class="contact-card-hint">Instant confirmation</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="nav-logo" href="#">
+            <span class="logo-icon">⚽</span>
+            <span>Playmakers Soccer Field</span>
+          </a>
+          <p>Kochi's favourite 5-a-side football &amp; box cricket venue. Play hard, play smart, play at Playmakers.</p>
+          <div class="social-links">
+            <a href="https://playo.co/venues/kaloor-cochin/playmakers-kaloor-cochin" target="_blank" aria-label="Playo">Playo</a>
+            <a href="https://www.playspots.in/booking-spot/playmakers-ymjra-24a-kaloor/" target="_blank" aria-label="Playspots">Playspots</a>
+            <a href="https://maps.app.goo.gl/7djryYZSCN9c2Dg49" target="_blank" aria-label="Google Maps">Maps</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#facilities">Facilities</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#booking">Book Now</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Sports</h4>
+          <ul>
+            <li><a href="#booking">5-a-Side Football</a></li>
+            <li><a href="#booking">Box Cricket</a></li>
+            <li><a href="#booking">Corporate Events</a></li>
+            <li><a href="#booking">Tournaments</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📞 <a href="tel:+919446089121">+91 94460 89121</a></p>
+          <p>📍 YMJRA-24A, Kaloor,<br />Kochi, Kerala 682017</p>
+          <p>🕐 5 AM – 12 AM Daily</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Playmakers Soccer Field, Kaloor, Kochi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
