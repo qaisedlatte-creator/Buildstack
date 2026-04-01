@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+const STORAGE_KEY = 'ct_api_key'
+
 function SettingRow({ label, description, children }) {
   return (
     <div className="flex items-center justify-between py-3" style={{ borderBottom: '1px solid #1a1a1a' }}>
@@ -32,6 +34,20 @@ function NumberInput({ value, onChange, min, max, step = 1, unit = '' }) {
 
 export default function Settings({ settings, setSettings, clearAll, customFoods, setCustomFoods }) {
   const [showConfirm, setShowConfirm] = useState(false)
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem(STORAGE_KEY) || '')
+  const [apiKeySaved, setApiKeySaved] = useState(false)
+  const [showKey, setShowKey] = useState(false)
+
+  const handleSaveApiKey = () => {
+    const trimmed = apiKey.trim()
+    if (trimmed) {
+      localStorage.setItem(STORAGE_KEY, trimmed)
+    } else {
+      localStorage.removeItem(STORAGE_KEY)
+    }
+    setApiKeySaved(true)
+    setTimeout(() => setApiKeySaved(false), 2000)
+  }
 
   const update = (key, value) => setSettings(prev => ({ ...prev, [key]: value }))
 
@@ -143,25 +159,56 @@ export default function Settings({ settings, setSettings, clearAll, customFoods,
         </div>
       )}
 
-      {/* API Key info */}
+      {/* API Key */}
       <div className="mx-4 px-4 py-4 rounded-2xl mb-4" style={{ background: '#111', border: '1px solid #1e1e1e' }}>
-        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Claude API</p>
-        <div className="flex items-center gap-2">
-          <div
-            className="w-2 h-2 rounded-full"
-            style={{ background: import.meta.env.VITE_CLAUDE_API_KEY ? '#22c55e' : '#ef4444' }}
-          />
-          <p className="text-sm text-gray-300">
-            {import.meta.env.VITE_CLAUDE_API_KEY
-              ? 'API key configured'
-              : 'No API key — set VITE_CLAUDE_API_KEY in .env'}
-          </p>
+        <div className="flex items-center justify-between mb-3">
+          <div>
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Claude API Key</p>
+            <p className="text-xs text-gray-600 mt-0.5">Get yours at console.anthropic.com</p>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-2 h-2 rounded-full" style={{
+              background: (import.meta.env.VITE_CLAUDE_API_KEY || localStorage.getItem(STORAGE_KEY))
+                ? '#22c55e' : '#ef4444'
+            }} />
+            <span className="text-xs text-gray-500">
+              {(import.meta.env.VITE_CLAUDE_API_KEY || localStorage.getItem(STORAGE_KEY)) ? 'Set' : 'Not set'}
+            </span>
+          </div>
         </div>
-        {!import.meta.env.VITE_CLAUDE_API_KEY && (
-          <p className="text-xs text-gray-600 mt-2">
-            Copy .env.example to .env and add your Anthropic API key to enable AI food parsing.
-          </p>
-        )}
+        <div className="relative mb-2">
+          <input
+            type={showKey ? 'text' : 'password'}
+            value={apiKey}
+            onChange={e => setApiKey(e.target.value)}
+            placeholder="sk-ant-..."
+            className="w-full px-3 py-2.5 pr-10 rounded-xl text-sm text-white"
+            style={{ background: '#1a1a1a', border: '1px solid #333', fontFamily: 'monospace' }}
+          />
+          <button
+            onClick={() => setShowKey(p => !p)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+            {showKey ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            )}
+          </button>
+        </div>
+        <button
+          onClick={handleSaveApiKey}
+          className="w-full py-2 rounded-xl text-sm font-semibold transition-all active:scale-95"
+          style={{ background: apiKeySaved ? '#22c55e22' : '#a855f722', color: apiKeySaved ? '#22c55e' : '#a855f7', border: `1px solid ${apiKeySaved ? '#22c55e33' : '#a855f733'}` }}>
+          {apiKeySaved ? '✓ Saved' : 'Save API Key'}
+        </button>
+        <p className="text-xs text-gray-700 mt-2 text-center">Stored locally on your device only</p>
       </div>
 
       {/* Danger zone */}

@@ -55,8 +55,8 @@ export function useClaudeAPI() {
   const abortRef = useRef(null)
 
   const getApiKey = () => {
-    const key = import.meta.env.VITE_CLAUDE_API_KEY
-    if (!key) throw new Error('VITE_CLAUDE_API_KEY is not set in .env')
+    const key = import.meta.env.VITE_CLAUDE_API_KEY || localStorage.getItem('ct_api_key')
+    if (!key) throw new Error('No API key — go to Settings and enter your Anthropic API key.')
     return key
   }
 
