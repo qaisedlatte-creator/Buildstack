@@ -77,8 +77,8 @@ export default function Navigation({ activeTab, onTabChange }) {
           )
         })}
       </div>
-      {/* Safe area for phones with home indicator */}
-      <div className="h-safe-area-inset-bottom" style={{ height: 'env(safe-area-inset-bottom)' }} />
+      {/* iPhone home indicator safe area */}
+      <div style={{ height: 'env(safe-area-inset-bottom, 0px)', background: 'inherit' }} />
     </nav>
   )
 }

@@ -147,13 +147,21 @@ export default function App() {
     top: 0,
     left: 0,
     right: 0,
-    bottom: 64,
+    // 64px nav + iPhone home indicator safe area
+    bottom: 'calc(64px + env(safe-area-inset-bottom, 0px))',
     overflowY: 'auto',
     overflowX: 'hidden',
+    WebkitOverflowScrolling: 'touch',
   }
 
   return (
-    <div style={{ background: '#0a0a0a', minHeight: '100dvh', position: 'relative' }}>
+    <div style={{
+      background: '#0a0a0a',
+      height: '100dvh',
+      position: 'relative',
+      paddingTop: 'env(safe-area-inset-top, 0px)',
+      overflow: 'hidden',
+    }}>
       {/* Tab content */}
       <div style={tabContentStyle}>
         {activeTab === 'dashboard' && (
